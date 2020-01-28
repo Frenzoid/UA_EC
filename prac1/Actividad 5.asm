@@ -1,12 +1,10 @@
-#####################################
-#                                  #
-#        Actividad 4               # 
-#                                  #
-####################################
+# Actividad 5
 
+# Especificamos desde que lugar en la memoria empezamos
 .text 0x00400000
-addi $t0, $zero, 25
-addi $t4, $t0, 0
 
-# Cuestion 4
-addi $t0, $t0, -1
+# $12=5
+addiu $t4, $zero, 5
+
+# $10= 8
+addiu $t2, $zero, 5 
