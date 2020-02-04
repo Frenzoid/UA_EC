@@ -10,3 +10,6 @@ or $t3, $t2, $t1
 and $t4, $t1, $t2
 xor $t5, $t1, $t2
 
+
+addi $v0, $zero, 10 #Salir del programa
+syscall
