@@ -14,6 +14,6 @@ add $a0, $v0, $zero
 add $v0, $zero, 35
 syscall 
 
-#Salir del programa
+# Salir del programa
 addi $v0, $zero, 10 
 syscall

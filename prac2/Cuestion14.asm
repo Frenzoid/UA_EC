@@ -5,17 +5,20 @@
 
 .text
 
-# Bueno,, mejor que suponer, lo guardamos.
+# Bueno.. mejor que suponer, lo guardamos para cuando lo usemos.
 addi $t1, $zero, 0x0000FACE
 
 
-# FACE = 0000 0000 0000 0000 1111 1010 1100 1110
-# CAFE = 0000 0000 0000 0000 1100 1010 1111 1110
+# Primero vamos a ver que valores tienen en bin.
+# 0000FACE = 0000 0000 0000 0000 1111 1010 1100 1110
+# 0000CAFE = 0000 0000 0000 0000 1100 1010 1111 1110
 
-# FACE xor CAFE = 0000 0000 0000 0000 0011 0000 0011 0000
+# Parece que la opción más directa sería usando xor...
 
+# 0000FACE xor 0000CAFE = 0000 0000 0000 0000 0011 0000 0011 0000 = 0003030
+# Entoces 0000FACE xor 0003030 = 0000CAFE
 xori $t2, $1, 0x0003030
 
-
-addi $v0, $zero, 10 #Salir del programa
+# Salir del programa
+addi $v0, $zero, 10 
 syscall
