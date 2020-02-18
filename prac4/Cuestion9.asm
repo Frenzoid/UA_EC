@@ -1,6 +1,6 @@
-# Cuestión 8.
-# ➢ Escribe una función que multiplique por 60. Escribe el programa principal que
-#     lea una cantidad de minutos y devuelve por consola la cantidad en segundos.
+# Cuestión 9.
+#  Modifica el código de tal manera que ahora lo que lea sea una cantidad de hora y
+#     muestre por consola la cantidad de segundos.
 
 # Recordatorio
 # V = retorno
@@ -9,15 +9,23 @@
 
 .text
 
-jal readInt		# Llamamos a la funcion de leer un entero.
+# Llamamos a la funcion de leer un entero.
+jal readInt
+
+# Llamamos a la función x60 2 veces para pasar de horas a segundos.
+move $a0, $v0
+jal x60			
 
 move $a0, $v0
-jal x60			# Llamamos a la función x60 que multiplica por 60
+jal x60
 
+
+# Llamamos a la función imprimir un entero
 move $a0, $v0
-jal printInt		# Llamamos a la función imprimir un entero
+jal printInt		
 
-jal exit		# Acaba el programa
+# Acaba el programa
+jal exit
 
 
 ############################
