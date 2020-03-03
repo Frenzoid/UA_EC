@@ -15,7 +15,7 @@ VAE2: .asciiz "Curso 2018-2019\n"
 VAE3: .asciiz "\n El resultado de la suma es: "
 
 .text # Comienzo del programa
-la $a0, VAE1 # Comienzo cadena en $a0
+la $a0,VAE1 # Comienzo cadena en $a0
 li $v0, 4
 syscall
 
