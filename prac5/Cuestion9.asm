@@ -35,7 +35,7 @@ add $t0, $s0, $s1		# Sumamos ambos valores y guardamos el resultado en $t0
 
 seq $t1, $t0, $zero		# Comprobamos si son iguales, deuvelve 1 en $1 si se cumple
 
-bne $t1, 1, BucleWhile		# Si $1 es igual es 0, 
+bne $t1, 1, BucleWhile		# Vuelve a iterar si $t1 != 1 
 
 j exit
 

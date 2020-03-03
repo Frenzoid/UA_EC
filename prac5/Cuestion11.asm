@@ -1,4 +1,4 @@
-# Cuestión 11.
+# Cuestión 10.
 # Haz el código que lee de teclado dos valores positivos A y B en los que A < B.
 # El programa tiene que escribir por consola los valores comprendidos entre ambos,
 # 	incluyéndose a ellos mismos.
@@ -15,7 +15,7 @@ move $s2, $s0		# Contador
 inicio_for: move $a0, $s2		# Mostramos el contador
 jal printInt
 
-jal readSpace		# Imprimimos un espacio entre los numeros
+jal printSpace		# Imprimimos un espacio entre los numeros
 
 seq $t1, $s2, $s1	# Si $s2 es menor que que $s1, $t1 = 1, en caso contrario, $t1 = 0
 
@@ -32,7 +32,7 @@ j exit
 ############################
 
 # Funcion que imprime un espacio
-readSpace: li $a0, ' '
+printSpace: li $a0, ' '
 li $v0, 11
 syscall
 
@@ -45,7 +45,7 @@ syscall                 # Escribe el valor de $a0
 jr $ra                  # Vuelve al programa principal
 
 # Funcion lee un entero.
-readInt: li $a0, '>'	# Ponemos un caracter para que el usuario sepa que estamos esperando un numero de entrada.
+readInt: li $a0, '>'	  # Ponemos un caracter para que el usuario sepa que estamos esperando un numero de entrada.
 li $v0, 11
 syscall
 
