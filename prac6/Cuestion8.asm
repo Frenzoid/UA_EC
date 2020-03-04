@@ -1,4 +1,4 @@
-# Cuestion 7.
+# Cuestion 8.
 
 # Modifica el programa de la cuestión 7 para que muestre en la pantalla los datos
 # guardados en la memoria ordenados de menor a mayor valor
