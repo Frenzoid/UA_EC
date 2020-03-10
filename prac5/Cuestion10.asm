@@ -5,10 +5,10 @@
 # Es decir, si A=3 y B=6, escribe en la consola: 3 4 5 6.
 # 	(puedes escribir, por ejemplo, un salto de línea después de cada uno de los valores a mostrar). 
 
-jal readInt		# Lee un entero
+jal readInt		    # Lee un entero
 move $s0, $v0		# nos los guardamos en $s1, inicio.
 
-jal readInt		# Lee el segundo entero
+jal readInt		    # Lee el segundo entero
 move $s1, $v0		# nos los guardamos en $s2, condicion final del bucle
 move $s2, $s0		# Contador
 

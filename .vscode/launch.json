@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "dashmips",
+            "request": "launch",
+            "name": "dashmips (Run Current File)",
+            "program": "${file}",
+            "registerFormat": "dec",
+            "dashmipsCommand": "python -m dashmips debug",
+            "dashmipsArgs": [
+                "-l",
+                "-i",
+                "localhost",
+                "-p",
+                "2390"
+            ]
+        },
+        {
+            "type": "dashmips",
+            "request": "attach",
+            "name": "dashmips (Attach)",
+            "registerFormat": "dec",
+            "port": 2390
+        }
+    ]
+}
