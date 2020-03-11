@@ -70,7 +70,7 @@ ISMATCORRECT: .asciiz "Es esta la matriz que esperabas?\n( [S]i o [Cualquier car
 # String para pregunar si quiere continuar o no.
 CONTINUE: .asciiz "Quieres dar por finalizada esta tarea?\n( [S]i o [Cualquier caracter] / [N]o ): "
 
-# Strings separadores.
+# Strings separadores (para separar los numeros a la hora de mostrar los numeros a sumar).
 SEPARATORNUM: .asciiz " + "
 SEPARATORRES: .asciiz " = "
 
