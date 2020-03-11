@@ -49,7 +49,7 @@
 #         DATOS         #
 #########################
 
-.data           # Especificamos que queremos empezar a manipular datos para empezar desde el segmeto de datos.ç
+.data           # Especificamos que queremos empezar a manipular datos para empezar desde el segmeto de datos.
 
 #   Nums  #
 MAT: .space 16     # Reservamos la matriz.
@@ -132,6 +132,7 @@ jal readChar                  # Pedimos un caracter
 beq $v0, $s5, main            # Si el caracter perdido es "N", entonces, vuleve a pedir la matriz, si es cualquier otra cosa, continua.
 
 # Iniciamos el bucle para sumar y mostrar la diagonal
+jal printCharNewline
 sumMatDiag:
   jal updateUserCounters
   jal loadMatSlot
@@ -141,7 +142,7 @@ sumMatDiag:
   jal printInt                # Y a la vez vamos mostrando el valor de cada diagonal.
   beq $t8, $s7, skipFancy
 
-  fancy:
+  fancy: 
   la $a0, SEPARATORNUM        # Ponemos un separador entre los numeros para que quede mas bonito
   jal printStr
   
