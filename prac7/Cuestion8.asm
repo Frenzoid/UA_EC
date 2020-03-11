@@ -1,7 +1,7 @@
 # Escribe el  código  que  calcula  la  suma  de  los  elementos  de  la  diagonal principal  
 # de  una  matriz  4x4  de  valores  enteros  introducida  por  teclado. Muestra la suma por pantalla.
 
-# Anyadidos. 
+# Añadidos. 
 # Decir al usuario que fila / columna se esta introduciendo
 # Mostrar la matriz una vez completada
 # Preguntar si es correcta, si es asi, haz el calculo, si no, vuelve a pedir datos. (S/N)
