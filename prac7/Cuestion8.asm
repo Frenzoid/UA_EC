@@ -293,7 +293,7 @@ syscall
 
 jr $ra
 
-# Funcion, imprime un entero
+# Funcion, imprime una nueva linea
 printCharNewline:
 li $a0, '\n'
 li $v0, 11
