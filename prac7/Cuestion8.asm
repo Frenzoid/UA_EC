@@ -21,23 +21,23 @@
 # Ahora.. como lo implementamos? (20min más tarde) Pues de la siguiente manera.
 #
 #  0 / 4 = 0  <-  0 | [ 3][ 2][ 1][ 0]
-#  4 / 4 = 1  <-  4 | [ 7][ 6][ 5][ 4]
-#  8 / 4 = 2  <-  8 | [11][#Y][ 9][ 8]
+#  4 / 4 = 1  <-  4 | [ 7][ 6][ 5][ 4] 
+#  8 / 4 = 2  <-  8 | [11][#Y][ 9][ 8] <- La matriz está representada como está en Memoria!!
 # 12 / 4 = 3  <- 12 | [15][14][13][12]
 # 
 # X = Columna  (desde 0 - 3)
 # Y = Iterador (desde 0 - 15)
 # Divisor = 4
-#
+#--------------------------------------------------------------
 # Ejemplo:
 #
 #    Posicion de la matriz: 10
 #
-#    Y = 10, X = 10 / Divisor
-#    Entonces, Columna = X + 1 = 3
-#              Fila    = Y - (X * 4) + 1 = 3
-#
-#
+#    Y = 10, entonces, X (desde de 0 - 3) = (Y / Divisor)
+#    Entonces, Columna a mostrar = X + 1 = 3
+#    Entonces, Fila a mostrar    = Y - (X * 4) + 1 = 3
+#--------------------------------------------------------------
+# - Formulas que usarmeos:
 # Contador de fila a mostrar al usuario    = X + 1
 # Contador de columna a mostrar al usuario = Y - (X * 4) + 1
 #
