@@ -1,0 +1,32 @@
+Cuestión 7.
+
+Supón que el contenido del registro Cause ($13) tiene los siguientes valores
+después de haberse producido una excepción.
+
+-----------------------------------------------------------------------------------------------
+| Cause                                                  | Fuente de la excepción
+|----------------------------------------------------------------------------------------------
+|                                (7 [65432] 10) <- del 7 al 0, Ultimos 2 bytes, Ultimos 8 bits.
+|                                 -  -----  --
+| 0x00000000 -> 0x000000 (00) -> (0 [00000] 00) -> [0]  -> Int
+| 0x00000020 -> 0x000000 (20) -> (0 [01000] 00) -> [8]  -> SyS0
+| 0x00000024 -> 0x000000 (24) -> (0 [01001] 00) -> [9]  -> Bp
+| 0x00000028 -> 0x000000 (28) -> (0 [01010] 00) -> [10] -> RI
+| 0x00000030 -> 0x000000 (30) -> (0 [01100] 00) -> [12] -> Ov
+|----------------------------------------------------------------------------------------------
+| Número | Nombre   | Causa de la excepción
+|----------------------------------------------------------------------------------------------
+| 0      | Int      | Interrupción (Hardware)
+| 4      | AdEL     | Excepción por dirección errónea (Load o busca de instrucción)
+| 5      | AdES     | Excepción por dirección errónea (Store)
+| 8      | SyS0     | Excepción syscall
+| 9      | Bp       | Excepción por punto de ruptura (breakpoint)
+| 10     | RI       | Excepción por instrucción reservada
+| 12     | Ov       | Excepción por desbordamiento aritmético
+| 13     | Tr       | Trap
+| 15     | FPE      | Excepción de coma flotante
+-----------------------------------------------------------------------------------------------
+
+( 0x000000 (10) ->  0 [00100] 00 -> [4] -> AdEL <- Para la Cuestion 12 )
+
+
