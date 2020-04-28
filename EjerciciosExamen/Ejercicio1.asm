@@ -8,38 +8,23 @@
 # A = entrada
 ##############
 
-.data 0x10010004
-num1: .word
-
-.data 0x1001000C
-num2: .word
-
-.data 0x10010014 
-menorNum: .word
-
-.data 0x10010005
-num1x30: .align 2
-
-.data 0x1001000D
-num2Invers: .align 2
-
 .text
 # CODIGO #
 
 # Numero 1
 jal readInt
-la  $t0, num1 # $t0 direcciones en memoria.
+la  $t0, 0x10010004
 move $t1, $v0 # $t1 num1
 sw  $v0, 0($t0)
 
 
 # Numero 2
 jal readInt
-la  $t0, num2 # $t0 direcciones en memoria.
+la  $t0, 0x1001000C # $t0 direcciones en memoria.
 move $t2, $v0 # $t2 num2
 sw  $v0, 0($t0)
 
-la $t0, menorNum # $t0 = dir en memoria del que será el menor.
+la $t0, 0x10010014 # $t0 = dir en memoria del que será el menor.
 
 
 # Cual es menor.
@@ -52,11 +37,11 @@ menor:
 # Multiplica num1 x 30
 move $a0, $t1
 jal x30
-la $t0, num1x30
+la $t0, 0x10010005
 sw $v0, 0($t0) # Y lo guardamos.
 
 # Intercambio de num2 0 <-> 1.
-la $t0, num2Invers
+la $t0, 0x1001000D
 move $a0, $v0
 jal num2InversFun
 sw $v0, 0($t0)
