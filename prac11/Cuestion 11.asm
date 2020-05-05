@@ -8,7 +8,7 @@
 
 # Reserva de espacio para guardar registros en kdata
 .kdata
-contexto: .word 0,0,0,0    # espacio para alojar cuatro registros
+contexto: .word 0, 0, 0, 0 # espacio para alojar cuatro registros
 
 .ktext 0x80000180          # Dirección de comienzo de la rutina
 
@@ -32,7 +32,8 @@ beq $a0, $s1, exit
 sw $a0, 12($t0) 	        # Escribe en la consola
 
 # Antes de acabar se podría dejar todo iniciado:
-acabamos: mtc0 $0, $13    # Iniciar registro Cause
+acabamos: 
+mtc0 $0, $13              # Iniciar registro Cause
 mfc0 $k0, $12             # Leer registre Status
 andi $k0, 0xfffd          # Iniciar bit de excepción
 ori  $k0, 0x11            # Habilitar interrupciones
@@ -66,4 +67,3 @@ jal bucle
 exit:
 li $v0, 10
 syscall # syscall 10 (exit)
-

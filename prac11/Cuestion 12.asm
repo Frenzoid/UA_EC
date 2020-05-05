@@ -70,7 +70,6 @@ syscall
 
 j FinInterrupcion
 
-
 # Iniciamos registro Vaddr del coprocesador 0
 mtc0 $zero, $8
 
