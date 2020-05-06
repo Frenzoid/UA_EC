@@ -21,8 +21,8 @@ suma:
     div		$t1, $t4    # $t1 / $t3
     mfhi	$t5         # si $t5 == 0, es par
 
-    beqz $t5, espar
-    bnez $t5, noespar
+    beqz $t5, espar   # Saltamos al codigo que hace cosas si es par
+    bnez $t5, noespar # Saltamos al codigo que hace cosas si es impar
     
     espar:
       add  $t3, $t3, $t1	# $t3 += $t1
