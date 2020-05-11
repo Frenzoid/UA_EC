@@ -7,7 +7,7 @@
 #         DATOS         #
 #########################
 .data
-.eqv ControlTeclado 0  # Constantes.
+.eqv ControlTeclado 0  # eqv = Constantes.
 .eqv BufferTeclado 4
 .eqv ControlDisplay 8
 .eqv BufferDisplay 12
@@ -19,7 +19,6 @@
 # SELECCIÓN:
 
 jal setInitialValues
-lui $t0, 0xffff # Direc. del registro de control del teclado
 
 r_espera:
   lw $t2, ControlTeclado($s0) # Lee registro control del teclado

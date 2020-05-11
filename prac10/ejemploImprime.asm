@@ -12,8 +12,8 @@ b_espera:
   lw $t1, 8($t0) # registro control
 
   # SINCRONITZACIÓN
-  andi $t1, $t1, 0x0001 # bit de ready Sincroniza
-beq $t1, $0, b_espera
+  andi $t1, $t1, 1 # bit de ready Sincroniza
+beqz $t1, b_espera
 
 # TRANSFERENCIA
 sw $a0, 12($t0) # Escribe en la consola

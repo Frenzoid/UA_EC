@@ -42,7 +42,7 @@ max:
 # C O M P L E T A R
 
 c.lt.s $f14, $f12
-bc1t  maxConditionalAssinament1   # Si $f12 es mayor, asignamos $f12 a $f0
+bc1t maxConditionalAssinament1    # Si $f12 es mayor, asignamos $f12 a $f0 (si el bit de comparacion es 1, salta automaticamente)
 j maxConditionalAssinament2       # Si no, entonces significa que $f14 es mayor, asignamos $f14 a $f0
 
 maxConditionalAssinament1:        # Asigna $f12 a $f0 

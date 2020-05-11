@@ -37,7 +37,6 @@ jal exit
 ############################
 # Funcion pow(num, exp)
 pow:
-  # C O M P L E T A R
   # Usamos el valor de la potencia recibida como contador, y multiplicamos por cada iteraci�n.
   subi $a0, $a0, 1
   beqz $a0, powCondionalExitOne		# En caso de que la potencia sea 1, o haya llegado a 1, salimos.
@@ -49,7 +48,7 @@ bnez $a0, pow				        # Mientras que no sea 0, continua multiplicando.
 powCondionalExitZero:
 li $s0, 1				      # Cargamos un 1 en nuestro registro.
 mtc1 $s0, $f14				# Movemos el valor a $f14
-cvt.s.w $f14, $f14
+cvt.s.w $f14, $f14    # Transformamos de entero a flotante simple
 
 powCondionalExitOne:	# Fin condicional, si la potencia a procesar era 1.
 mov.s $f0, $f14				# Movemos el resultado a $f0.

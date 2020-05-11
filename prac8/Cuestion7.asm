@@ -52,7 +52,7 @@ li $v0, 4
 la $a0, demanaPi
 syscall
 
-li $v0,6
+li $v0, 6
 syscall
 jr   $ra          # Vuelve al programa principal.
 
@@ -73,9 +73,9 @@ li $v0, 4
 la $a0, long
 syscall
 
-# $f1 = pi en flotante simple.
-# $f2 = radio en flotante simple.
-# $f20 = valor del num 2 en flotante simple.
+# $f1   = pi en flotante simple.
+# $f2   = radio en flotante simple.
+# $f20  = valor del num 2 en flotante simple.
 
 # Formula de la longitud: 2 * Pi * R.
 # Procuramos siempre guardar el resultado final en $f12 para mostrar directamente el resultado.
@@ -85,7 +85,7 @@ mul.s $f12, $f12, $f20   # $f12 = (pi * R) * 2
 li $v0, 2
 syscall
 
-li $a0, '\n'		# Imprimimos un salto de linea
+li $a0, '\n'		  # Imprimimos un salto de linea
 li $v0, 11
 syscall
 
@@ -103,8 +103,8 @@ syscall
 
 # Formula del area de un circulo: Pi * R^2.
 # Procuramos siempre guardar el resultado final en $f12 para mostrar directamente el resultado.
-mov.s $f3, $f2 		# $f3 = $f2
-mul.s $f3, $f3, $f3	# $f2 = $f2^2
+mov.s $f3, $f2 		    # $f3 = $f2
+mul.s $f3, $f3, $f3	  # $f2 = $f2^2
 mul.s $f12, $f3, $f1	# $f12 = $f2^2 * $f1
 
 li $v0, 2

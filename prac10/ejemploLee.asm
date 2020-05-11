@@ -9,11 +9,11 @@
 lui $t0, 0xffff # Direc. del registro de control del teclado
 
 b_espera:
-  lw $t2, ($t0) # Lee registro control del teclado
+  lw $t1, ($t0) # Lee registro control del teclado
 
   # SINCRONIZACIÓN:
-  andi  $t2, $t2, 1 # Extrae el bit de ready
-beqz $t2, b_espera # Si cero no hay carácter
+  andi $t1, $t1, 1 # Extrae el bit de ready
+beqz $t1, b_espera # Si cero no hay carácter
 # Continuamos esperando
 
 # TRANSFERENCIA:
