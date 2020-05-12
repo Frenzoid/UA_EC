@@ -1,57 +1,52 @@
-# Recopilación rapida de funciones mayormente usadas.
+# Chuleta con cosas de uso habitual para copiar - pegar rápidamente y no perder tiempo haciendo una funcion que lea un entero o chorradas así.
 
-# Recordatorio
-# [$a0], $a1  |  [$f0] , $f1 , $f2 , $f3    = entrada
-# [$v0], $v1  |  [$f12], $f13, $f14, $f15   = salida
+# ############ Recordatorio del convenio #############################
+# [$a0], $a1  |  [$f12], $f13, $f14, $f15   = entrada
+# [$v0], $v1  |  [$f0] , $f1 , $f2 , $f3    = salida
 # $tXX        |  $f4  - $f11 & $f16 - $f19  = Registros temporales.
 # $sXX        |  $f20 - $f30                = Registros de guardado.
-##############
+######################################################################
 
 ###############
 # Datos clave #
 ###############
 
-# Teclado
+# - Ejemplos datos - 
 .data
+mensajeEjemplo: .asciiz "asdadasdsfddfgsfsfddf: "
+cadena: .space 32
 .eqv ControlTeclado 0  # eqv = Constantes.
 .eqv BufferTeclado 4
 .eqv ControlDisplay 8
 .eqv BufferDisplay 12
 
-lui $t0, 0xffff   # Direc. del registro de control del teclado.
+# - Teclado - 
+
+lui $t0, 0xffff   # Direc. del registro de control del hw.
 lw $v0, BufferTeclado($t0)   # Lee registro de datos del teclado (tecla pulasada).
 sw $a0, BufferDisplay($t0)   # Escribe en la consola
 
-#--------------------------------------------------------------Imprime lee
+#------------------------ Imprime y lee (sincrono). ----------------------------------------
 # SELECCIÓN:
-lui $t0, 0xffff # Direc. del registro de control del teclado
-
+lui $t0, 0xffff # Direc. del registro de control del hw
 r_espera:
   lw $t2, ControlTeclado($t0) # Lee registro control del teclado
-
-  # SINCRONIZACIÓN:
-  andi  $t2, $t2, 1 # Extrae el bit de ready
-beqz $t2, r_espera # Si cero no hay carácter
+  andi  $t2, $t2, 1           # bit "ready", se usa para Sincronizar
+beqz $t2, r_espera            # Si cero no hay carácter detectado
 # Continuamos esperando
 
 # LEEMOS:
 jal getc
-
 move $a0, $v0
-
-# SELECCIÓN:
-lui $t0, 0xffff # ffff0000;
-
 w_espera:
   lw $t1, ControlDisplay($t0) # registro control
-
-  # SINCRONITZACIÓN
-  andi $t1, $t1, 0x0001 # bit de ready Sincroniza
-beq $t1, $0, w_espera
+  andi $t1, $t1, 1            # bit "ready", se usa para Sincronizar
+beq $t1, $0, w_espera         # Si cero no está listo para imprimir
 
 # ESCRIBIMOS
 jal putc
 j r_espera
+
 
 # F
 getc:
@@ -61,10 +56,10 @@ jr $ra
 putc:
 sw $a0, BufferDisplay($s0) # Escribe en la consola
 jr $ra
-#-----------------------------------------------------------------
+#---------------------------------------------------------------------------------------------
 
 
-#Excepciones
+# - Excepciones - 
 mfc0 $a0, $13         # $a0 <= registro Cause
 andi $a0, $a0, 0x3C   # extraemos en $a0 el código de excepción
 
@@ -120,6 +115,21 @@ li $v0, 4
 syscall
 jr $ra
 
+# Funcion imprime numero entero en binario
+printBin:
+la $v0, 35
+syscall
+jr $ra
+
+# Funcion, lee un string
+readString:
+li $v0, 8       # pide un string
+la $a0, cadena  # carga la direccion desde donde se guardará el string en memoria
+li $a1, 20      # especificamos el numero maximo de caracteres.
+move $t0, $a0   # guarda el string a t0
+syscall
+jr $ra
+
 
 # Funcion lee un entero.
 readInt: 
@@ -151,7 +161,7 @@ li $v0, 2
 syscall
 jr   $ra          # Vuelve al programa principal.
 
-# Función pow(float, int)
+# Función: pow(float $f12, int $a0): float $f0
 pow:
   # Usamos el valor de la potencia recibida como contador, y multiplicamos por cada iteración.
   subi $a0, $a0, 1
@@ -168,48 +178,50 @@ mov.s $f0, $f14				# Movemos el resultado a $f0.
 jr $ra				
 
 
-# Funcion Max(float, float).
+# Funcion: Max(float $f13, float $f12): float $f0.
 max:
-c.lt.s $f14, $f12
+c.lt.s $f13, $f12
 bc1t maxConditionalAssinament1    # Si $f12 es mayor, asignamos $f12 a $f0 (si el bit de comparacion es 1, salta automaticamente)
-j maxConditionalAssinament2       # Si no, entonces significa que $f14 es mayor, asignamos $f14 a $f0
+j maxConditionalAssinament2       # Si no, entonces significa que $f13 es mayor, asignamos $f13 a $f0
 maxConditionalAssinament1:        # Asigna $f12 a $f0 
 mov.s $f0, $f12
 j maxConditionalExitNormal        #    y salta al final de la funcion
-maxConditionalAssinament2:        # Asigna $f14 a $f0
-mov.s $f0, $f14
+maxConditionalAssinament2:        # Asigna $f13 a $f0
+mov.s $f0, $f13
 maxConditionalExitNormal:         # final de la funcion.
 jr $ra
 
-
+# Funcion lee una cadena desde el teclado (en vivo) y lo imprime por el display.
 read_string:
+lui $s0, 0xffff                   # Direc. del registro de control del teclado.
 li $s1, '\n'                      # Codigo ascii de retorno de carro
 la $t2, cadena                    # cadena: .space 32
 r_sync:                           # Revisamos cuando tenemos un caracter leeido.
   lw   $t1, ControlTeclado($s0)
-  andi $t1, $t1, 1                # Si se ha leeido, el bit estará a 1, comprobamos.
+  andi $t1, $t1, 1                # Si se ha leeido, el bit estará a 1, comprobamos, si no es así, volvemos a comprobar.
 beqz $t1, r_sync
   lw   $t1, BufferTeclado($s0)    # Obtenemos el caracter.
-  beq  $t1, $s1, r_final          # Comprobamos si es INTRO (\n)
-  sb   $t1, 0($t2)                 # Guardamos en nuestra variable.
+  beq  $t1, $s1, r_final          # Comprobamos si es INTRO (\n), si lo es, salimos.
+  sb   $t1, 0($t2)                # Guardamos en nuestra variable.
   addi $t2, $t2, 1                # Aumentamos el salto de registro para concatenar el siguiente caracter.
 j r_sync
 r_final:
 jr $ra
 
 
-
+# Funcion imprime una cadena desde desde memoria y lo imprime por el display.
 print_string:
+lui $s0, 0xffff                   # Direc. del registro de control del teclado.
 li $s1, '\n'                      # Codigo ascii de retorno de carro
 la $t2, cadena                    # cadena: .space 32
-w_sync: 
+w_sync:                           # Revisamos cuando tenemos un caracter leeido.
   lw   $t1, ControlDisplay($s0)
-  andi $t1, $t1, 1
+  andi $t1, $t1, 1                # Si se ha leeido, el bit estará a 1, comprobamos, si no es así, volvemos a comprobar.
 beqz $t1, w_sync
-  lbu  $t1, 0($t2)
-  beqz $t1, w_final
-  sw   $t1, BufferDisplay($s0)
-  addi $t2, $t2, 1
+  lbu  $t1, 0($t2)                # Cargamos el bite desde memoria en $t1 (unsigned).
+  beqz $t1, w_final               # Si lo leeido es de valor 0 (fin de la frase), salimos.
+  sb   $t1, BufferDisplay($s0)    # Cargamos lo leeido en el display.
+  addi $t2, $t2, 1                # Pasamos a la siguiente posición para lee el siguiente caracter en la siguiente iteracion.
 j w_sync
 w_final:
 jr $ra
@@ -226,3 +238,8 @@ exit:
 li $v0, 10
 syscall
 
+# Notas personales, si te peta el ejercicio, o no te va como deberia ir y estás Totalmente Seguro de que lo tienes bién,
+#  no te vuelvas loco, reinicia mars porque menudo puto cancer hijo de puta se vuelve a veces esta puta mierda de programa,
+#  prefiero trabajar en un ensamblador de verdad que en un simulador más buggeado que su puta madre, prefiero coger, y mandar
+#  las señales con los cables en puro binario que volver a tocar mars y perder 6 horas de mi vida, solo porque el simulador
+#  ha decidido que es hora de buggearse.
