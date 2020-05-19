@@ -1,5 +1,4 @@
-# Computer Structures.
-<h1>Assembly langauge on MIPS.</h1>
+# Computer Structures, Assembly langauge over MIPS.
 
 <p align="center">
   <img src="./assets/preview1.png"></img>
