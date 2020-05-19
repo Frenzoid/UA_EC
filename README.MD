@@ -1,7 +1,7 @@
 # Computer Structures.
+<h1>Assembly langauge on MIPS.</h1>
 
 <p align="center">
-<h1>Assembly langauge on MIPS.</h1>
   <img src="./assets/preview1.png"></img>
   <img src="./assets/preview2.png"></img>
 </p>
