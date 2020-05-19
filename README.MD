@@ -4,7 +4,7 @@
 <h1>Assembly langauge on MIPS.</h1>
   <img src="./assets/preview1.png"></img>
   <img src="./assets/preview2.png"></img>
-<p >
+</p>
 
 This repository contains the exercices that i've done during UA's Computer Structures course, to learn Assembly, using a MIPS processor as platform.
 
