@@ -161,6 +161,7 @@ li $v0, 2
 syscall
 jr   $ra          # Vuelve al programa principal.
 
+
 # Función: pow(float $f12, int $a0): float $f0
 pow:
   # Usamos el valor de la potencia recibida como contador, y multiplicamos por cada iteración.
@@ -191,6 +192,7 @@ mov.s $f0, $f13
 maxConditionalExitNormal:         # final de la funcion.
 jr $ra
 
+
 # Funcion lee una cadena desde el teclado (en vivo) y lo imprime por el display.
 read_string:
 lui $s0, 0xffff                   # Direc. del registro de control del teclado.
@@ -212,7 +214,6 @@ jr $ra
 # Funcion imprime una cadena desde desde memoria y lo imprime por el display.
 print_string:
 lui $s0, 0xffff                   # Direc. del registro de control del teclado.
-li $s1, '\n'                      # Codigo ascii de retorno de carro
 la $t2, cadena                    # cadena: .space 32
 w_sync:                           # Revisamos cuando tenemos un caracter leeido.
   lw   $t1, ControlDisplay($s0)
@@ -237,9 +238,3 @@ jr $ra     # Vuelve al programa principal
 exit:
 li $v0, 10
 syscall
-
-# Notas personales, si te peta el ejercicio, o no te va como deberia ir y estás Totalmente Seguro de que lo tienes bién,
-#  no te vuelvas loco, reinicia mars porque menudo puto cancer hijo de puta se vuelve a veces esta puta mierda de programa,
-#  prefiero trabajar en un ensamblador de verdad que en un simulador más buggeado que su puta madre, prefiero coger, y mandar
-#  las señales con los cables en puro binario que volver a tocar mars y perder 6 horas de mi vida, solo porque el simulador
-#  ha decidido que es hora de buggearse.
