@@ -12,7 +12,7 @@ In this scenario, were not going to use a real MIPS processor, but a simulator m
 It covers the following:
 
 - Usage of instructions.
-- Usage of the registers, and its nomenclature usage.
+- Usage of the registers, and its convention usage.
 - Basic to advanced aritmeti-logical operations.
 - Pseudoinstructions.
 - Functions.
