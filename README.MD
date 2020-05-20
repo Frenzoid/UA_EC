@@ -1,11 +1,11 @@
-# Computer Structures, Assembly langauge over MIPS.
+## Computer Structures, Assembly langauge over MIPS.
 
 <p align="center">
   <img src="./assets/preview1.png"></img>
   <img src="./assets/preview2.png"></img>
 </p>
 
-This repository contains the exercices that i've done during UA's Computer Structures course, to learn Assembly, using a MIPS processor as platform.
+This repository contains the exercices that i've done during UA's Computer Structures course, meant to learn Assembly, using a MIPS processor as platform.
 
 In this scenario, were not going to use a real MIPS processor, but a simulator made with Java called Mars.
 
